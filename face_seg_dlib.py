@@ -6,7 +6,6 @@ from imutils import face_utils
 
 
 
-# from get_roi import get_roi
 def mask_roi(image):
     p = 'E:/BP4D/test/shape_predictor_81_face_landmarks.dat'
     detector = dlib.get_frontal_face_detector()
@@ -37,20 +36,12 @@ def mask_roi(image):
                 image = cv2.bitwise_and(image, mask)
         return image
 
-def get_im_train(path_im, path_save_im):
-    global data_train
+def face_seg(path_im, path_save_im):
     list_dir = sorted(os.listdir(path_im))
 
     count = 0
-    file_count = 0
-    data_train = []
-    train_data = []
-    train_data1 = []
 
-    global image1
-    image1 = []
-    #for i in range(int(len(list_dir))):
-    for i in range(175,180):
+    for i in range(int(len(list_dir))):
         list_dir1 = sorted(os.listdir(path_im + '/' +  list_dir[i]))
         list_dir_save1 = path_save_im + '/' +  list_dir[i]
         if not os.path.exists(list_dir_save1):
@@ -101,16 +92,5 @@ path_im = 'E:/BP4D/manhob hci/resample'
 path_save_im = 'G:/MAHNOB_seg'
 
 print("begin1")
-get_im_train(path_im, path_save_im)
+face_seg(path_im, path_save_im)
 print("finished")
-
-
-"""
-/home/ouzar1/Desktop/Dataset1/model/Ubfc_25fps/15/T0/0395.png
-(148, 111, 3)
-1
-/home/ouzar1/Desktop/Dataset1/model/Ubfc_25fps/15/T0/1369.png
-(141, 102, 3)
-2
-/home/ouzar1/Desktop/Dataset1/model/Ubfc_25fps/15/T0/0977.png
-"""
